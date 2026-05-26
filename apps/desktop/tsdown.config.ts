@@ -12,7 +12,12 @@ export default defineConfig([
     ...shared,
     entry: ["src/main.ts"],
     clean: true,
-    noExternal: (id) => id.startsWith("@t3tools/"),
+    noExternal: (id) =>
+      id.startsWith("@t3tools/") ||
+      id === "effect" ||
+      id.startsWith("effect/") ||
+      id.startsWith("@effect/") ||
+      id === "electron-updater",
   },
   {
     ...shared,

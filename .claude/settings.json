@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /mnt/c/Users/deanj/AppData/Roaming/t3code -name \"*.json\" 2>/dev/null | head -20)",
+      "Read(//mnt/c/Users/deanj/AppData/Roaming/t3code/**)",
+      "Read(//mnt/c/Users/deanj/.t3/userdata/**)",
+      "Bash(wsl.exe -d Ubuntu -- wslpath -u '//wsl.localhost/Ubuntu/home/deanj/projects/t3code-argus/apps/server/dist/bin.mjs')",
+      "Bash(powershell.exe -Command ' *)",
+      "Bash(nvm --version)",
+      "Bash(wsl.exe -d Ubuntu -- node --version)",
+      "Bash(wsl.exe -d Ubuntu -- which node)",
+      "Bash(node -p \"require\\('node:path'\\).dirname\\(require.resolve\\('node-pty/package.json'\\)\\)\")",
+      "Bash(node -e \"require\\('/home/deanj/projects/t3code-argus/apps/desktop/dist-electron/main.cjs'\\)\")",
+      "Bash(gh pr *)"
+    ],
+    "additionalDirectories": [
+      "/mnt/c/Users/deanj/.t3/userdata"
+    ]
+  }
+}

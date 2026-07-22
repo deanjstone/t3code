@@ -66,6 +66,36 @@ describe("isProviderInstancePickerReady", () => {
 
     expect(entry && isProviderInstancePickerReady(entry)).toBe(true);
   });
+
+  it("accepts an enabled, available instance with a warning status (e.g. inconclusive auth probe)", () => {
+    const [entry] = deriveProviderInstanceEntries([
+      {
+        ...provider({
+          provider: ProviderDriverKind.make("claudeAgent"),
+          instanceId: "claudeAgent",
+        }),
+        status: "warning" as const,
+      },
+    ]);
+
+    expect(entry?.status).toBe("warning");
+    expect(entry && isProviderInstancePickerReady(entry)).toBe(true);
+  });
+
+  it("rejects an instance with an error status", () => {
+    const [entry] = deriveProviderInstanceEntries([
+      {
+        ...provider({
+          provider: ProviderDriverKind.make("claudeAgent"),
+          instanceId: "claudeAgent",
+        }),
+        status: "error" as const,
+      },
+    ]);
+
+    expect(entry?.status).toBe("error");
+    expect(entry && isProviderInstancePickerReady(entry)).toBe(false);
+  });
 });
 
 describe("isProviderInstancePickerVisible", () => {

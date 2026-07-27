@@ -42,3 +42,11 @@ agents.
   examples of idiomatic usage, tests, module structure, and API design.
 - When writing relay infrastructure code with Alchemy, inspect `.repos/alchemy-effect/` for examples of
   idiomatic usage, tests, module structure, and API design.
+
+## Fork-Specific Agent Notes
+
+This repo has an `upstream` remote (`pingdotgg/t3code`) in addition to `origin` (the user's fork).
+
+- `gh pr create` with no `--repo` targets the **upstream** parent repo when run from a fork, not `origin`.
+  Always pass `--repo deanjstone/t3code` explicitly (and `--base`/`--head` as needed) to avoid opening a
+  PR against the public upstream project by mistake.

@@ -406,7 +406,7 @@ describe("resolveDefaultProviderModelSelection", () => {
       provider({
         provider: ProviderDriverKind.make("codex"),
         instanceId: "codex",
-        status: "warning",
+        status: "error",
         models: [model("gpt-5.6")],
       }),
       provider({

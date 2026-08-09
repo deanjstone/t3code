@@ -107,6 +107,15 @@ html[data-mobile-composer-route-transition="true"]::view-transition-old(t3-mobil
   );
 }
 
+/* Installed PWA (standalone display mode) owns the full screen down to the
+   device status bar — unlike a regular browser tab, there's no browser chrome
+   to provide the top inset, so the topbar must clear it itself. */
+@media (display-mode: standalone) {
+  :root {
+    --workspace-controls-top: env(safe-area-inset-top, 0px);
+  }
+}
+
 @theme inline {
   --animate-skeleton: skeleton 2s -1s infinite linear;
   /* Duty-cycled indicator animations: long holds with stepped ramps, so the

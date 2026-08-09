@@ -1,9 +1,11 @@
 name: Deploy T3 Connect relay
 
 on:
-  push:
-    branches:
-      - main
+  # Automatic push-to-main trigger is disabled in this fork: this deploys the
+  # T3 Connect relay to Cloudflare/PlanetScale/Clerk/APNs infra this fork
+  # doesn't have credentials for, so it failed on every push. Manual dispatch
+  # is kept so the pipeline stays available if relay infra is ever configured.
+  workflow_dispatch:
 
 permissions:
   contents: read

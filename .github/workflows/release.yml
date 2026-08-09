@@ -1,12 +1,11 @@
 name: Release
 
 on:
-  push:
-    tags:
-      - "v*.*.*"
-      - "!v*-nightly.*"
-  schedule:
-    - cron: "0 */3 * * *"
+  # Automatic tag-push and schedule triggers are disabled in this fork: every
+  # job downstream of `relay_public_config` requires a hosted T3 Connect relay
+  # (Cloudflare/Clerk) this fork doesn't run, so they can never succeed and
+  # only burned Actions minutes failing every 3 hours. Manual dispatch is kept
+  # so the pipeline stays available if relay infra is ever configured.
   workflow_dispatch:
     inputs:
       channel:

@@ -12,6 +12,7 @@
     "@t3tools/shared": "workspace:*",
     "effect": "catalog:",
     "pngjs": "7.0.0",
+    "sharp": "0.34.5",
     "yaml": "catalog:"
   },
   "devDependencies": {

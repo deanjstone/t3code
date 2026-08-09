@@ -703,6 +703,21 @@ const probeClaudeCapabilities = (
     ),
     Effect.timeoutOption(CAPABILITIES_PROBE_TIMEOUT_MS),
     Effect.result,
+    Effect.tap((result) => {
+      if (Result.isFailure(result)) {
+        return Effect.logWarning(
+          "Claude capabilities probe failed; auth status could not be verified.",
+          { error: String(result.failure) },
+        );
+      }
+      if (Option.isNone(result.success)) {
+        return Effect.logWarning(
+          "Claude capabilities probe timed out; auth status could not be verified.",
+          { timeoutMs: CAPABILITIES_PROBE_TIMEOUT_MS },
+        );
+      }
+      return Effect.void;
+    }),
     Effect.map((result) => {
       if (Result.isFailure(result)) return undefined;
       return Option.isSome(result.success) ? result.success.value : undefined;

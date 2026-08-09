@@ -69,9 +69,15 @@ export interface ProviderInstanceEntry {
  *
  * Disabling an instance updates `enabled` independently, while its previous
  * `ready` probe status can remain in the streamed snapshot until reconciliation.
+ *
+ * `status === "warning"` is accepted alongside `"ready"`: drivers report
+ * `"warning"` for non-fatal issues (e.g. an inconclusive auth/capabilities
+ * probe) while still returning a fully populated `models` list, so gating
+ * strictly on `"ready"` hid every model for an otherwise-usable instance.
+ * Only `"error"` (installed-but-broken, or not installed) should hide models.
  */
 export function isProviderInstancePickerReady(entry: ProviderInstanceEntry): boolean {
-  return entry.enabled && entry.isAvailable && entry.status === "ready";
+  return entry.enabled && entry.isAvailable && entry.status !== "error";
 }
 
 /** Picker rails contain configured, enabled instances only. */

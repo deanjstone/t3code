@@ -12,7 +12,6 @@ import {
   type ThreadSortInput,
 } from "../lib/threadSort";
 import type { SidebarThreadSummary, Thread } from "../types";
-import type { ThreadRouteTarget } from "../threadRoutes";
 import { cn } from "../lib/utils";
 import { isLatestTurnSettled } from "../session-logic";
 
@@ -407,17 +406,6 @@ export function orderItemsByPreferredIds<TItem, TId>(input: {
   return [...ordered, ...remaining];
 }
 
-export function getVisibleSidebarThreadIds<TThreadId>(
-  renderedProjects: readonly {
-    shouldShowThreadPanel?: boolean;
-    renderedThreadIds: readonly TThreadId[];
-  }[],
-): TThreadId[] {
-  return renderedProjects.flatMap((renderedProject) =>
-    renderedProject.shouldShowThreadPanel === false ? [] : renderedProject.renderedThreadIds,
-  );
-}
-
 export function getSidebarThreadIdsToPrewarm<TThreadId>(
   visibleThreadIds: readonly TThreadId[],
   limit = SIDEBAR_THREAD_PREWARM_LIMIT,
@@ -450,28 +438,6 @@ export function resolveAdjacentThreadId<T>(input: {
   }
 
   return currentIndex < threadIds.length - 1 ? (threadIds[currentIndex + 1] ?? null) : null;
-}
-
-export function shouldNavigateAfterProjectRemoval(input: {
-  routeTarget: ThreadRouteTarget | null;
-  projectThreads: readonly {
-    environmentId: string;
-    id: string;
-  }[];
-  projectDraftId: string | null;
-}): boolean {
-  const { projectDraftId, projectThreads, routeTarget } = input;
-  if (routeTarget?.kind === "draft") {
-    return projectDraftId === routeTarget.draftId;
-  }
-  if (routeTarget?.kind !== "server") {
-    return false;
-  }
-  return projectThreads.some(
-    (thread) =>
-      thread.environmentId === routeTarget.threadRef.environmentId &&
-      thread.id === routeTarget.threadRef.threadId,
-  );
 }
 
 export function isContextMenuPointerDown(input: {

@@ -2031,70 +2031,23 @@ code {
 }
 
 /* ---------------------------------------------------------------------------
-   Dimidium — this fork's default palette.
+   Dimidium's info and success roles.
 
-   Overrides only the base role values; upstream's derived roles (--destructive
-   from --error, --ring from --primary, --app-chrome-background from
-   --background, the --message-* and --toolbar-* families) follow automatically
-   because they are var() references resolved at computed-value time.
-
-   Declared last on purpose: it must outrank upstream's own :root palette, which
-   has equal specificity. A runtime theme selected in Settings -> Appearance
-   still wins, since html[data-theme-id]:not([data-theme-id=""]) is more
-   specific than :root.
+   The palette itself now lives in `packages/shared/src/themePalettes.ts` as a
+   selectable theme. These four are the residue: upstream deliberately keeps
+   success, info, provider and channel identity colors out of the themeable
+   role set, so a theme entry cannot carry them and they stay as CSS.
    --------------------------------------------------------------------------- */
 :root {
-  --background: #f5f3f1;
-  --surface-raised: var(--secondary);
-  --foreground: #1c1918;
-  --card: #ede9e6;
-  --card-foreground: #1c1918;
-  --popover: #eae5e1;
-  --popover-foreground: #1c1918;
-  --primary: #1a8e46;
-  --primary-foreground: #f5f3f1;
-  --secondary: rgb(0 0 0 / 4%);
-  --secondary-foreground: #1c1918;
-  --muted: rgb(0 0 0 / 4%);
-  --muted-foreground: #6b6663;
-  --accent: rgb(0 0 0 / 4%);
-  --accent-foreground: #1c1918;
-  --error: #cf494c;
-  --error-foreground: #8c2a2a;
-  --border: rgb(0 0 0 / 8%);
-  --input: rgb(0 0 0 / 10%);
   --info: #4060d8;
   --info-foreground: #2a4090;
   --success: #2e7318;
   --success-foreground: #1a4d0e;
-  --warning: #8c6200;
-  --warning-foreground: #5c4000;
 
   @variant dark {
-    --background: #141414;
-    --surface-raised: var(--secondary);
-    --foreground: #bab7b6;
-    --card: #111111;
-    --card-foreground: #bab7b6;
-    --popover: #0f0f0f;
-    --popover-foreground: #bab7b6;
-    --primary: #37e57b;
-    --primary-foreground: #141414;
-    --secondary: rgb(255 255 255 / 4%);
-    --secondary-foreground: #bab7b6;
-    --muted: rgb(255 255 255 / 4%);
-    --muted-foreground: #817e7e;
-    --accent: rgb(255 255 255 / 4%);
-    --accent-foreground: #dee3e4;
-    --error: #cf494c;
-    --error-foreground: #ff643b;
-    --border: rgb(255 255 255 / 8%);
-    --input: rgb(255 255 255 / 12%);
     --info: #688dfd;
     --info-foreground: #0575d8;
     --success: #60b442;
     --success-foreground: #37e57b;
-    --warning: #db9c11;
-    --warning-foreground: #fccd1a;
   }
 }

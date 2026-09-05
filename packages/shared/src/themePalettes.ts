@@ -1,4 +1,11 @@
-export const BUILT_IN_THEME_IDS = ["t3-chat", "grove", "ocean", "ember", "iris"] as const;
+export const BUILT_IN_THEME_IDS = [
+  "dimidium",
+  "t3-chat",
+  "grove",
+  "ocean",
+  "ember",
+  "iris",
+] as const;
 
 /** The mobile app's own hand-tuned palette, which is not part of the built-in library. */
 export const MOBILE_DEFAULT_THEME_ID = "t3-code";
@@ -756,7 +763,152 @@ export const IRIS_THEME: ThemeDefinition = {
   sidebarArtwork: true,
 };
 
+/**
+ * Dimidium — this fork's palette, previously a hand-edited override appended to
+ * `index.css`. Expressed here so it is selectable like any other theme and so
+ * the fork stops editing upstream's palette declarations, which were 6 of the
+ * 21 conflicts in the 2026-09-05 upstream sync.
+ *
+ * Roles Dimidium never defined are resolved here using upstream's own `:root`
+ * derivations (toolbar follows chrome, message surfaces follow accent, code
+ * background mixes card into canvas, and so on), so this renders as the
+ * override did. Every value is concrete: these roles feed React Native tokens
+ * as well as web CSS, and RN cannot parse `color-mix()` or `var()`.
+ */
+export const DIMIDIUM_THEME: ThemeDefinition = {
+  id: "dimidium",
+  label: "Dimidium",
+  appearance: "light",
+  colors: {
+    canvas: "oklch(0.96513 0.003429 67.783)",
+    chrome: "oklch(0.96513 0.003429 67.783)",
+    toolbar: "oklch(0.96513 0.003429 67.783)",
+    toolbarForeground: "oklch(0.216493 0.005139 39.375)",
+    toolbarBorder: "oklch(0 0 0 / 0.08)",
+    toolbarControl: "oklch(0.924692 0.00767 61.447)",
+    toolbarControlForeground: "oklch(0.216493 0.005139 39.375)",
+    toolbarControlHover: "oklch(0 0 0 / 0.04)",
+    surface: "oklch(0.936292 0.00593 59.648)",
+    surfaceRaised: "oklch(0 0 0 / 0.04)",
+    surfaceOverlay: "oklch(0.924692 0.00767 61.447)",
+    text: "oklch(0.216493 0.005139 39.375)",
+    textMuted: "oklch(0.513893 0.007887 53.334)",
+    border: "oklch(0 0 0 / 0.08)",
+    input: "oklch(0 0 0 / 0.1)",
+    focus: "oklch(0.568998 0.145953 150.411)",
+    accent: "oklch(0.568998 0.145953 150.411)",
+    accentForeground: "oklch(0.96513 0.003429 67.783)",
+    secondary: "oklch(0 0 0 / 0.04)",
+    secondaryForeground: "oklch(0.216493 0.005139 39.375)",
+    muted: "oklch(0 0 0 / 0.04)",
+    mutedForeground: "oklch(0.513893 0.007887 53.334)",
+    placeholder: "oklch(0.513893 0.007887 53.334)",
+    secondaryLabel: "oklch(0.513893 0.007887 53.334)",
+    iconMuted: "oklch(0.513893 0.007887 53.334)",
+    error: "oklch(0.590832 0.169546 22.677)",
+    errorForeground: "oklch(0.435772 0.132861 24.519)",
+    errorSurface: "oklch(0.590832 0.169546 22.677 / 0.08)",
+    warning: "oklch(0.52665 0.109304 79.313)",
+    warningForeground: "oklch(0.392675 0.081216 80.502)",
+    warningSurface: "oklch(0.52665 0.109304 79.313 / 0.08)",
+    update: "oklch(0.568998 0.145953 150.411)",
+    updateForeground: "oklch(0.568998 0.145953 150.411)",
+    updateSurface: "oklch(0.568998 0.145953 150.411 / 0.12)",
+    accentSurface: "oklch(0 0 0 / 0.04)",
+    accentSurfaceForeground: "oklch(0.216493 0.005139 39.375)",
+    messageSurface: "oklch(0 0 0 / 0.04)",
+    messageForeground: "oklch(0.216493 0.005139 39.375)",
+    messageAction: "oklch(0.568998 0.145953 150.411)",
+    messageActionForeground: "oklch(0.96513 0.003429 67.783)",
+    // color-mix(in srgb, #1a8e46 90%, #f5f3f1) resolved.
+    messageActionHover: "oklch(0.60426 0.136275 152.083)",
+    // color-mix(in srgb, #ede9e6 90%, #f5f3f1) resolved.
+    codeBackground: "oklch(0.939314 0.005926 59.648)",
+    codeForeground: "oklch(0.216493 0.005139 39.375)",
+    // The override lost this when the dead [data-sidebar-version] blocks were
+    // dropped, leaving the sidebar on upstream's cool zinc. Dimidium's intent
+    // was always the warm card surface.
+    sidebar: "oklch(0.936292 0.00593 59.648)",
+    sidebarForeground: "oklch(0.216493 0.005139 39.375)",
+    sidebarMutedForeground: "oklch(0.513893 0.007887 53.334)",
+    sidebarControlSurface: "oklch(0 0 0 / 0.04)",
+    sidebarRowHover: "oklch(0.216493 0.005139 39.375 / 0.06)",
+    sidebarRowActive: "oklch(0.216493 0.005139 39.375 / 0.11)",
+    sidebarRowSelected: "oklch(0.216493 0.005139 39.375 / 0.07)",
+    sidebarBorder: "oklch(0 0 0 / 0.08)",
+    terminalBackground: "oklch(0.96513 0.003429 67.783)",
+    terminalForeground: "oklch(0.216493 0.005139 39.375)",
+    terminalCursor: "oklch(0.335595 0.045603 253.947)",
+    terminalSelection: "oklch(0.365148 0.070374 256.796 / 0.2)",
+    terminalScrollbar: "oklch(0.885305 0 0)",
+    terminalScrollbarHover: "oklch(0.804658 0 0)",
+  },
+  variants: {
+    dark: {
+      canvas: "oklch(0.191251 0 0)",
+      chrome: "oklch(0.191251 0 0)",
+      toolbar: "oklch(0.191251 0 0)",
+      toolbarForeground: "oklch(0.781582 0.003687 39.477)",
+      toolbarBorder: "oklch(1 0 0 / 0.08)",
+      toolbarControl: "oklch(0.168416 0 0)",
+      toolbarControlForeground: "oklch(0.781582 0.003687 39.477)",
+      toolbarControlHover: "oklch(1 0 0 / 0.04)",
+      surface: "oklch(0.177638 0 0)",
+      surfaceRaised: "oklch(1 0 0 / 0.04)",
+      surfaceOverlay: "oklch(0.168416 0 0)",
+      text: "oklch(0.781582 0.003687 39.477)",
+      textMuted: "oklch(0.595717 0.003637 17.259)",
+      border: "oklch(1 0 0 / 0.08)",
+      input: "oklch(1 0 0 / 0.12)",
+      focus: "oklch(0.813151 0.201153 151.251)",
+      accent: "oklch(0.813151 0.201153 151.251)",
+      accentForeground: "oklch(0.191251 0 0)",
+      secondary: "oklch(1 0 0 / 0.04)",
+      secondaryForeground: "oklch(0.781582 0.003687 39.477)",
+      muted: "oklch(1 0 0 / 0.04)",
+      mutedForeground: "oklch(0.595717 0.003637 17.259)",
+      placeholder: "oklch(0.595717 0.003637 17.259)",
+      secondaryLabel: "oklch(0.595717 0.003637 17.259)",
+      iconMuted: "oklch(0.595717 0.003637 17.259)",
+      error: "oklch(0.590832 0.169546 22.677)",
+      errorForeground: "oklch(0.696173 0.197236 35.642)",
+      errorSurface: "oklch(0.590832 0.169546 22.677 / 0.16)",
+      warning: "oklch(0.734806 0.14961 78.982)",
+      warningForeground: "oklch(0.864606 0.172836 91.502)",
+      warningSurface: "oklch(0.734806 0.14961 78.982 / 0.16)",
+      update: "oklch(0.813151 0.201153 151.251)",
+      updateForeground: "oklch(0.813151 0.201153 151.251)",
+      updateSurface: "oklch(0.813151 0.201153 151.251 / 0.18)",
+      accentSurface: "oklch(1 0 0 / 0.04)",
+      accentSurfaceForeground: "oklch(0.912288 0.005576 211.039)",
+      messageSurface: "oklch(1 0 0 / 0.04)",
+      messageForeground: "oklch(0.781582 0.003687 39.477)",
+      messageAction: "oklch(0.813151 0.201153 151.251)",
+      messageActionForeground: "oklch(0.191251 0 0)",
+      // color-mix(in srgb, #37e57b 90%, #141414) resolved.
+      messageActionHover: "oklch(0.757095 0.184965 151.541)",
+      codeBackground: "oklch(0.177638 0 0)",
+      codeForeground: "oklch(0.781582 0.003687 39.477)",
+      sidebar: "oklch(0.177638 0 0)",
+      sidebarForeground: "oklch(0.781582 0.003687 39.477)",
+      sidebarMutedForeground: "oklch(0.595717 0.003637 17.259)",
+      sidebarControlSurface: "oklch(1 0 0 / 0.04)",
+      sidebarRowHover: "oklch(0.781582 0.003687 39.477 / 0.08)",
+      sidebarRowActive: "oklch(0.781582 0.003687 39.477 / 0.11)",
+      sidebarRowSelected: "oklch(0.781582 0.003687 39.477 / 0.07)",
+      sidebarBorder: "oklch(1 0 0 / 0.08)",
+      terminalBackground: "oklch(0.191251 0 0)",
+      terminalForeground: "oklch(0.781582 0.003687 39.477)",
+      terminalCursor: "oklch(0.842909 0.077305 266.14)",
+      terminalSelection: "oklch(0.842909 0.077305 266.14 / 0.25)",
+      terminalScrollbar: "oklch(1 0 0 / 0.08)",
+      terminalScrollbarHover: "oklch(1 0 0 / 0.12)",
+    },
+  },
+};
+
 export const BUILT_IN_THEMES: ReadonlyArray<ThemeDefinition> = [
+  DIMIDIUM_THEME,
   T3_CHAT_THEME,
   GROVE_THEME,
   OCEAN_THEME,

@@ -51,11 +51,14 @@ describe("shouldIncludeModelPickerOption", () => {
     },
   );
 
+  // "warning" is deliberately absent in this fork: 1b968854b stopped hiding a
+  // provider's models while it is merely in warning status, leaving "error" as
+  // the only status that still collapses the picker to the active synthetic
+  // row. Upstream asserts both here; the other fixtures this fix touched were
+  // migrated the same way in that commit.
   it.each([
     ["opencode", "error"],
-    ["opencode", "warning"],
     ["antigravity", "error"],
-    ["antigravity", "warning"],
   ] as const)(
     "keeps only the active synthetic %s row when the provider status is %s",
     (driver, status) => {

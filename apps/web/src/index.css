@@ -2033,10 +2033,11 @@ code {
 /* ---------------------------------------------------------------------------
    Dimidium's info and success roles.
 
-   The palette itself now lives in `packages/shared/src/themePalettes.ts` as a
-   selectable theme. These four are the residue: upstream deliberately keeps
-   success, info, provider and channel identity colors out of the themeable
-   role set, so a theme entry cannot carry them and they stay as CSS.
+   The palette itself is not in this repo at all: it is imported as a custom
+   theme through Settings -> Appearance (see #25). These four are the residue —
+   upstream deliberately keeps success, info, provider and channel identity
+   colors out of the themeable role set, so no imported theme can carry them
+   and they stay as CSS.
    --------------------------------------------------------------------------- */
 :root {
   --info: #4060d8;
